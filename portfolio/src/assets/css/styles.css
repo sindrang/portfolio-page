@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+.young-serif-regular {
+  font-family: 'Young Serif', serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.bitter-paragraph {
+  font-family: 'Bitter', serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.bg-pale-orange {
+  background-color: #facf9f;
+}
+
+.bg-dark-orange {
+  background-color: #ff6223;
+}
+
+.bg-lighter-dark-orange {
+  background-color: #ff783e;
+}
