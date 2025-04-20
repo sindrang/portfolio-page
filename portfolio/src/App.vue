@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
+import { ref } from 'vue'
 
 const tabs: string[] = ['Engineering', 'Writing', 'Voice', 'Sewing', 'Mixology']
+const menuOpen = ref(false)
 
 const openMeetingsInNewTab = () => {
   window.open('https://calendar.app.google/YHovgU3NfPbZRRhD9', '_blank')
+}
+
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value
 }
 </script>
 
@@ -12,7 +18,7 @@ const openMeetingsInNewTab = () => {
   <div class="h-screen">
     <nav class="bg-pale-orange border-gray-200">
       <div
-        class="w-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 pt-5"
+        class="py-4 px-5 w-full max-w-screen-xl flex flex-wrap items-center justify-between md:mx-auto md:pt-5"
       >
         <RouterLink to="/">
           <span class="self-center text-2xl young-serif-regular whitespace-nowrap dark:text-black">
@@ -20,9 +26,10 @@ const openMeetingsInNewTab = () => {
           </span>
         </RouterLink>
         <button
+          @click="toggleMenu"
           data-collapse-toggle="navbar-default"
           type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-black-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded="false"
         >
@@ -43,6 +50,35 @@ const openMeetingsInNewTab = () => {
             />
           </svg>
         </button>
+        <div
+          class="absolute top-13 right-0 mt-2 w-40 rounded-md bg-white md:hidden"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabindex="-1"
+        >
+          <div class="py-1" role="none" v-show="menuOpen">
+            <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
+            <RouterLink
+              v-for="tab in tabs"
+              :to="'/' + tab"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+              tabindex="-1"
+              id="menu-item-0"
+            >
+              {{ tab }}
+            </RouterLink>
+            <a
+              @click="openMeetingsInNewTab"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+              tabindex="-1"
+              id="menu-item-2"
+              >Let's meet!</a
+            >
+          </div>
+        </div>
         <div class="hidden w-full md:flex md:w-auto">
           <ul
             class="font-medium bg-pale-orange flex flex-col py-4 md:py-3 px-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:mr-3 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
@@ -95,3 +131,13 @@ const openMeetingsInNewTab = () => {
     </footer>
   </div>
 </template>
+
+<style scoped>
+.active_menu {
+  display: block;
+}
+
+.disabled_menu {
+  display: hidden;
+}
+</style>
