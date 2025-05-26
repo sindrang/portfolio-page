@@ -92,7 +92,7 @@ const handleSkillHover = (skill: Skill | null) => {
   <div class="engineering-view">
     <!-- Hero Section -->
     <img
-      src="/carousel/image1.jpg"
+      src="/engineering-hero.jpg"
       alt="Engineering workspace"
       class="w-full h-[300px] object-cover"
     />
