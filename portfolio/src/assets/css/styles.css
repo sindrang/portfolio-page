@@ -13,14 +13,38 @@
   font-style: normal;
 }
 
-.bg-pale-orange {
-  background-color: #facf9f;
-}
-
 .bg-dark-orange {
   background-color: #ff6223;
 }
 
 .bg-lighter-dark-orange {
   background-color: #ff783e;
+}
+
+.bg-pale-orange {
+  background-color: #facf9f;
+}
+
+.bg-pale-orange-d1 {
+  background-color: #f9c387;
+}
+
+.bg-pale-orange-d2 {
+  background-color: #f7b76f;
+}
+
+.bg-pale-orange-d3 {
+  background-color: #f6ab56;
+}
+
+.bg-pale-orange-l1 {
+  background-color: #fbdbb7;
+}
+
+.bg-pale-orange-l2 {
+  background-color: #fde7cf;
+}
+
+.bg-pale-orange-l3 {
+  background-color: #fef3e8;
 }

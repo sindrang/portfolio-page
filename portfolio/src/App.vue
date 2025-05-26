@@ -2,7 +2,7 @@
 import { RouterView, RouterLink } from 'vue-router'
 import { ref } from 'vue'
 
-const tabs: string[] = ['Engineering', 'Writing', 'Voice', 'Sewing', 'Mixology']
+const tabs: string[] = ['Engineering', 'Sewing']
 const menuOpen = ref(false)
 
 const openMeetingsInNewTab = () => {
@@ -16,7 +16,7 @@ const toggleMenu = () => {
 
 <template>
   <div class="h-screen">
-    <nav class="bg-pale-orange border-gray-200">
+    <nav class="bg-pale-orange border-gray-200 relative z-50">
       <div
         class="py-4 px-5 w-full max-w-screen-xl flex flex-wrap items-center justify-between md:mx-auto md:pt-5"
       >
@@ -51,7 +51,7 @@ const toggleMenu = () => {
           </svg>
         </button>
         <div
-          class="absolute top-13 right-0 mt-2 w-40 rounded-md bg-white md:hidden"
+          class="absolute top-13 right-0 mt-2 w-40 rounded-md bg-white md:hidden z-50"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -60,7 +60,17 @@ const toggleMenu = () => {
           <div class="py-1" role="none" v-show="menuOpen">
             <!-- Active: "bg-gray-100 text-gray-900 outline-hidden", Not Active: "text-gray-700" -->
             <RouterLink
+              to="/"
+              class="block px-4 py-2 text-sm text-gray-700"
+              role="menuitem"
+              tabindex="-1"
+              id="menu-item-0"
+            >
+              Home
+            </RouterLink>
+            <RouterLink
               v-for="tab in tabs"
+              :key="tab"
               :to="'/' + tab"
               class="block px-4 py-2 text-sm text-gray-700"
               role="menuitem"
@@ -83,7 +93,16 @@ const toggleMenu = () => {
           <ul
             class="font-medium bg-pale-orange flex flex-col py-4 md:py-3 px-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:mr-3 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
           >
-            <li v-for="tab in tabs">
+            <li>
+              <RouterLink
+                to="/"
+                class="block py-2 px-3 text-black bg-pale-orange bitter-paragraph"
+                aria-current="page"
+              >
+                Home
+              </RouterLink>
+            </li>
+            <li v-for="tab in tabs" :key="tab">
               <RouterLink
                 :to="'/' + tab"
                 class="block py-2 px-3 text-black bg-pale-orange bitter-paragraph"
@@ -102,7 +121,7 @@ const toggleMenu = () => {
         </div>
       </div>
     </nav>
-    <div class="block h-4/5 bg-pale-orange">
+    <div class="block h-4/5 bg-pale-orange min-h-max">
       <RouterView />
     </div>
 
