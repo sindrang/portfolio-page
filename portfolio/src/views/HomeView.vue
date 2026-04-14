@@ -5,7 +5,7 @@ import ImageCarousel from '../components/ImageCarousel.vue'
 <template>
   <ImageCarousel />
   <h1 class="text-4xl font-bold text-center young-serif-regular m-6">
-    Software Engineer, Designer, and Entrepreneur
+    Sustainability Forward Clothing Designer, Upcycler, and Atelier
   </h1>
 </template>
 

@@ -2,7 +2,7 @@
 import { RouterView, RouterLink } from 'vue-router'
 import { ref } from 'vue'
 
-const tabs: string[] = ['Engineering', 'Sewing']
+const tabs: string[] = [] //['Engineering', 'Sewing']
 const menuOpen = ref(false)
 
 const openMeetingsInNewTab = () => {
@@ -128,17 +128,17 @@ const toggleMenu = () => {
     <footer class="flex bg-pale-orange shadow-sm m-0 h-1/12 py-4 px-20">
       <div class="w-full justify-right">
         <ul class="flex justify-center space-x-4">
-          <li>
-            <a href="https://github.com/sindrang"><i class="fab fa-github"></i></a>
-          </li>
           <!-- <li>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/sindrang"><i class="fab fa-github"></i></a>
           </li> -->
           <li>
+            <a href="https://www.instagram.com/just_sindhu_it/"><i class="fab fa-instagram"></i></a>
+          </li>
+          <!-- <li>
             <a href="https://www.linkedin.com/in/sindhu-ranga/"
               ><i class="fab fa-linkedin-in"></i
             ></a>
-          </li>
+          </li> -->
           <!-- <li>
             <a href="#"><i class="fab fa-youtube"></i></a>
           </li> -->

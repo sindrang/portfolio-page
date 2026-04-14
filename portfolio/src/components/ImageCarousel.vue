@@ -1,13 +1,22 @@
 <template>
   <div class="carousel-container">
     <div class="carousel" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-      <div v-for="(image, index) in images" :key="index" class="carousel-slide">
-        <img :src="image.url" :alt="image.alt" class="carousel-image" />
+      <div v-for="media in mediaItems" :key="media.url" class="carousel-slide">
+        <video
+          v-if="media.type === 'video'"
+          :src="media.url"
+          class="carousel-image"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        <img v-else :src="media.url" :alt="media.alt" class="carousel-image" />
       </div>
     </div>
     <div class="carousel-indicators">
       <button
-        v-for="(_, index) in images"
+        v-for="(_, index) in mediaItems"
         :key="index"
         :class="['indicator', { active: currentIndex === index }]"
         @click="setSlide(index)"
@@ -19,24 +28,31 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const images = [
+type MediaItem = {
+  url: string
+  alt: string
+  type: 'image' | 'video'
+}
+
+const isVideo = (path: string) => /\.(mov|mp4|webm)$/i.test(path)
+const fileNameFromPath = (path: string) => path.split('/').pop() ?? 'carousel media'
+
+const mediaModules = import.meta.glob(
+  '../../public/carousel/*.{jpg,jpeg,png,gif,webp,avif,heic,mov,mp4,webm}',
   {
-    url: '/carousel/image1.jpg',
-    alt: 'Professional workspace with modern equipment',
+    eager: true,
+    query: '?url',
+    import: 'default',
   },
-  {
-    url: '/carousel/image2.jpg',
-    alt: 'Creative design process visualization',
-  },
-  {
-    url: '/carousel/image3.jpg',
-    alt: 'Team collaboration in modern office',
-  },
-  {
-    url: '/carousel/image4.jpg',
-    alt: 'Technology and innovation concept',
-  },
-]
+) as Record<string, string>
+
+const mediaItems: MediaItem[] = Object.entries(mediaModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, url]) => ({
+    url,
+    alt: fileNameFromPath(path),
+    type: isVideo(path) ? 'video' : 'image',
+  }))
 
 const currentIndex = ref(0)
 let intervalId: number | null = null
@@ -46,7 +62,8 @@ const setSlide = (index: number) => {
 }
 
 const nextSlide = () => {
-  currentIndex.value = (currentIndex.value + 1) % images.length
+  if (mediaItems.length === 0) return
+  currentIndex.value = (currentIndex.value + 1) % mediaItems.length
 }
 
 onMounted(() => {
@@ -70,6 +87,7 @@ onUnmounted(() => {
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #000;
 }
 
 .carousel {
@@ -81,12 +99,15 @@ onUnmounted(() => {
 .carousel-slide {
   min-width: 100%;
   height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .carousel-indicators {
