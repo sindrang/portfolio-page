@@ -124,6 +124,7 @@ const toggleMenu = () => {
     <div class="block h-4/5 bg-pale-orange min-h-max">
       <RouterView />
     </div>
+    <embed src="/a-wedding-to-remember.pdf" type="application/pdf" width="100%" height="600px" />
 
     <footer class="flex bg-pale-orange shadow-sm m-0 h-1/12 py-4 px-20">
       <div class="w-full justify-right">
