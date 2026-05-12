@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { RouterView, RouterLink } from 'vue-router'
-import { ref } from 'vue'
+import { RouterView, RouterLink, useRoute } from 'vue-router'
+import { computed, ref } from 'vue'
+
+const route = useRoute()
+const isLinksHub = computed(() => route.name === 'links')
 
 const tabs: string[] = [] //['Engineering', 'Sewing']
 const menuOpen = ref(false)
@@ -15,8 +18,8 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <div class="h-screen">
-    <nav class="bg-pale-orange border-gray-200 relative z-50">
+  <div :class="isLinksHub ? 'min-h-screen flex flex-col' : 'h-screen'">
+    <nav v-if="!isLinksHub" class="bg-pale-orange border-gray-200 relative z-50">
       <div
         class="py-4 px-5 w-full max-w-screen-xl flex flex-wrap items-center justify-between md:mx-auto md:pt-5"
       >
@@ -121,12 +124,17 @@ const toggleMenu = () => {
         </div>
       </div>
     </nav>
-    <div class="block h-4/5 bg-pale-orange min-h-max">
+    <div
+      :class="
+        isLinksHub
+          ? 'flex-1 flex flex-col bg-pale-orange min-h-0'
+          : 'block h-4/5 bg-pale-orange min-h-max'
+      "
+    >
       <RouterView />
     </div>
-    <embed src="/a-wedding-to-remember.pdf" type="application/pdf" width="100%" height="600px" />
 
-    <footer class="flex bg-pale-orange shadow-sm m-0 h-1/12 py-4 px-20">
+    <footer v-if="!isLinksHub" class="flex bg-pale-orange shadow-sm m-0 h-1/12 py-4 px-20">
       <div class="w-full justify-right">
         <ul class="flex justify-center space-x-4">
           <!-- <li>

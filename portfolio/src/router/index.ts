@@ -56,6 +56,11 @@ const router = createRouter({
       component: () => import('../views/VoiceView.vue'),
     },
     {
+      path: '/links',
+      name: 'links',
+      component: () => import('../views/LinksHubView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'Not Found',
       component: NotFoundView,
