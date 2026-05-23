@@ -14,6 +14,11 @@ const links: HubLink[] = [
     external: true,
   },
   {
+    label: 'Dust To Dust Play @ Rorschach Theatre - Tickets! (5/24)',
+    href: 'https://rorschachtheatre.thundertix.com/events/265330',
+    external: true,
+  },
+  {
     label: 'Instagram',
     href: 'https://www.instagram.com/just_sindhu_it/',
     external: true,
