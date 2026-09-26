@@ -14,28 +14,13 @@ const links: HubLink[] = [
     external: true,
   },
   {
-    label: 'Dust To Dust Play @ Rorschach Theatre - Tickets! (5/24)',
-    href: 'https://rorschachtheatre.thundertix.com/events/265330',
-    external: true,
-  },
-  {
     label: 'Instagram',
     href: 'https://www.instagram.com/just_sindhu_it/',
     external: true,
   },
   {
-    label: 'Full Circle Presents - Sunday Supper! 6/21',
-    href: 'https://partiful.com/e/RjO6VFnLnRMXyn3Y8Wgg?c=2704JZJu',
-    external: true,
-  },
-  {
     label: 'What A Mess (Short Film) - Youtube',
     href: 'https://www.youtube.com/watch?v=kmdUs181tkk',
-    external: true,
-  },
-  {
-    label: 'What A Mess (Short Film) - Screening Tickets! (5/15)',
-    href: 'https://silver.afi.com/movies/detail/0100003540/',
     external: true,
   },
 ]
